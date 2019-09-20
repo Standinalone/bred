@@ -1,22 +1,29 @@
-var d = new Date('November 16, 2019 18:27:0');
-
- 
-document.addEventListener("DOMContentLoaded", () =>{
-	startTime();
+const delta = 0.00000001 
+document.addEventListener("DOMContentLoaded", () => {
+	document.getElementById("run").addEventListener("click", () =>{
+		var eq = document.getElementById("equation").value;
+		var start = parseFloat(document.getElementById("start").value);
+		var end = parseFloat(document.getElementById("end").value);
+		var epsilon = parseFloat(document.getElementById("epsilon").value);
+		var step = parseFloat(document.getElementById("step").value);
+		
+		var x;
+		var f = Function('eq, x', 'return eval(eq)');
+		
+		for (var i = start; i < end+step; i += step){
+			x = Math.round(i*100)/100;
+			y = Math.round(eval(eq)*100)/100;
+			document.getElementById("answer").innerHTML += "X: " + x + "\t Y: " + y + "\tDer: " + firstDer(f, eq, x) + "<br>";
+		}
+		 
+		
+	});
+	document.getElementById("clean").addEventListener("click", () =>{
+		document.getElementById("answer").innerHTML = "";
+	});
 });
 
-function startTime(){
-	var now = new Date();
-	var diff = d-now;
-
-	var seconds = Math.floor(diff/1000);
-	var minutes = Math.floor(seconds/60);
-	var hours = Math.floor(minutes/60);
-	var days = Math.floor(hours / 24);
-	mseconds = diff % 1000;
-	seconds %= 60;
-	minutes %= 60;
-	hours %= 24;
-	document.getElementById("time").innerHTML = days + 'd ' + hours + ' : ' + minutes + ' : ' + seconds + ' : ' + mseconds;
-	t = setTimeout(function() {startTime()} , 50);
+function firstDer (func, equation, argument){
+	return Math.round((func(equation, argument+delta)-func(equation, argument))/delta*100)/100;
 }
+
