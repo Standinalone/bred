@@ -26,14 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		var eps = parseFloat(document.getElementById("epsilon").value);
 
 		var arguments = []
-		arguments.push(2)
-		arguments.push(2)
+		arguments.push(-1)
+		arguments.push(3)
 		
 		var graph_arr = []
 		
 		var x = []
 		var y = []
-		for (let i = start; i < end; i+=1){
+		for (let i = start; i < end; i+=50){
 			x.push(i)
 			y.push(i)
 			var arr = []
@@ -44,10 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		draw(graph_arr, x ,y)
 		
-		var A = []
-		var B = arguments
+		var A = 0.0
+		var B = testFunction(arguments)
 		var steps_ellapsed = 0
-		var max_steps_count = 10
+		var max_steps_count = 100
+		var delta = 0.0
 		
 		var n = arguments.length;
 		
@@ -71,23 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
 			return false
 			
 		}
-		
 		for (var i = 0; i < max_steps_count; i++){
 			A = B
-			for (j = 0; j < n; j++){
+			for (var j = 0; j < n; j++){
 				var func = function(arg, arguments){
 					arguments[j] = arg
 					return testFunction(arguments)
 				}
-				arguments[j] = goldenRatioMinimum(func, start, end, 0.00001, arguments)
+				arguments[j] = goldenRatioMinimum(func, start, end, eps, arguments)
 			}
-			B = arguments
-			if (testForStop(A,B))
+			B = testFunction(arguments)
+			delta = Math.abs(A-B)
+			if (delta <= eps){
+				steps_ellapsed = i+1
 				break
+			}
 		}
 		
 			
-		//document.getElementById("answer").innerHTML += "Понадобилось " + steps_ellapsed + " итераций<br>";
+		document.getElementById("answer").innerHTML += "Понадобилось " + steps_ellapsed + " итераций<br>";
 		document.getElementById("answer").innerHTML += arguments;
 		document.getElementById("answer").innerHTML += "<br>";
 		document.getElementById("answer").innerHTML += "Function(args) = " + testFunction(arguments);
