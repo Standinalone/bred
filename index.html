@@ -1,7 +1,7 @@
 <head>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script src = "./script.js"></script>
+	<script src = "./lab1.js"></script>
 	
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js" integrity="sha256-qSIshlknROr4J8GMHRlW3fGKrPki733tLq+qeMCR05Q=" crossorigin="anonymous"></script> -->
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script> -->
@@ -39,9 +39,19 @@
 
 <main role="main" class="container">
 
-	f(x)<input type = "text" id = "equation" value = "4*x*Math.sin(x)">
+	<!-- Вариант 3 -->
+	<!-- f(x)<input type = "text" id = "equation" value = "4*x*Math.sin(x)"> -->
+	<!-- Вариант 5 -->
+	f(x)<input type = "text" id = "equation" value = "Math.sin(x)**2 / (2 + Math.sin(x))">
+	<!-- Вариант 2 -->
+	<!-- f(x)<input type = "text" id = "equation" value = "e**x + e**(-x) - 2*Math.sin(x)"> -->
 	Интервал
-	от <input type = "text" id = "start" value = "-8"> до <input type = "text" id = "end" value = "-2">
+		<!-- Вариант 3 -->
+	<!-- от <input type = "text" id = "start" value = "-0.5"> до <input type = "text" id = "end" value = "0.5"> -->
+		<!-- Вариант 5 -->
+	от <input type = "text" id = "start" value = "3.768"> до <input type = "text" id = "end" value = "5.652">
+		<!-- Вариант 2 -->
+	<!-- от <input type = "text" id = "start" value = "-8"> до <input type = "text" id = "end" value = "-2"> -->
 	с точностью ε <input type = "text" id = "epsilon" value = "0.001">
 	с шагом <input type = "text" id = "step" value = "0.1">
 	
